@@ -1,0 +1,32 @@
+﻿
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Client-Side JavaScript Dashboard</title>
+        <script src="//js.live.net/v5.0/wl.js"></script>
+        <script src="gather_info.js"></script>
+        <script src="constants.js"></script>        
+    </head>
+    <body>
+        <div id="signin"></div>
+        <br />
+        <label id="infoLabel"></label>
+        <script>
+            WL.Event.subscribe("auth.login", onLogin);
+            WL.init({
+                client_id: APP_CLIENT_ID,
+                redirect_uri: REDIRECT_URL,
+                scope: "wl.signin", 
+                response_type: "token"
+            });
+            WL.ui({
+                name: "signin",
+                element: "signin"
+            });
+            function onLogin() {
+                document.getElementById("infoLabel").innerText = "Signed in.";
+            }
+        </script>
+
+    </body>
+</html>
